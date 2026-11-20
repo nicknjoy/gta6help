@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 700" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a0b33"/>
+      <stop offset=".45" stop-color="#7a1f6b"/>
+      <stop offset=".7" stop-color="#ff4f7b"/>
+      <stop offset=".85" stop-color="#ff9a4a"/>
+    </linearGradient>
+    <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe26a"/>
+      <stop offset="1" stop-color="#ff3d8b"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3b1450"/>
+      <stop offset="1" stop-color="#0d0a14"/>
+    </linearGradient>
+    <clipPath id="sunclip"><circle cx="1080" cy="430" r="190"/></clipPath>
+  </defs>
+  <rect width="1600" height="700" fill="url(#sky)"/>
+  <g fill="#fff" opacity=".7">
+    <circle cx="120" cy="60" r="1.6"/><circle cx="300" cy="120" r="1.2"/><circle cx="520" cy="40" r="1.4"/>
+    <circle cx="760" cy="90" r="1"/><circle cx="1350" cy="70" r="1.5"/><circle cx="1500" cy="140" r="1.1"/>
+    <circle cx="940" cy="30" r="1.2"/><circle cx="210" cy="190" r="1"/>
+  </g>
+  <g clip-path="url(#sunclip)">
+    <rect x="880" y="230" width="400" height="400" fill="url(#sun)"/>
+    <g fill="#ff4f7b">
+      <rect x="880" y="440" width="400" height="8"/><rect x="880" y="470" width="400" height="11"/>
+      <rect x="880" y="500" width="400" height="14"/><rect x="880" y="532" width="400" height="17"/>
+      <rect x="880" y="566" width="400" height="20"/>
+    </g>
+  </g>
+  <!-- skyline -->
+  <g fill="#1d0f2e">
+    <rect x="330" y="350" width="60" height="230"/><rect x="395" y="300" width="48" height="280"/>
+    <rect x="448" y="380" width="70" height="200"/><rect x="525" y="260" width="55" height="320"/>
+    <rect x="585" y="330" width="80" height="250"/><rect x="670" y="390" width="45" height="190"/>
+    <rect x="720" y="300" width="62" height="280"/><rect x="788" y="420" width="70" height="160"/>
+    <rect x="1290" y="400" width="70" height="180"/><rect x="1365" y="340" width="50" height="240"/>
+    <rect x="1420" y="430" width="90" height="150"/>
+    <polygon points="525,260 552,225 580,260"/>
+  </g>
+  <g fill="#ff9ad0" opacity=".55">
+    <rect x="404" y="320" width="6" height="6"/><rect x="420" y="350" width="6" height="6"/><rect x="540" y="290" width="6" height="6"/>
+    <rect x="560" y="330" width="6" height="6"/><rect x="600" y="360" width="6" height="6"/><rect x="630" y="400" width="6" height="6"/>
+    <rect x="735" y="330" width="6" height="6"/><rect x="760" y="380" width="6" height="6"/><rect x="1378" y="370" width="6" height="6"/>
+  </g>
+  <!-- sea -->
+  <rect y="580" width="1600" height="120" fill="url(#sea)"/>
+  <g stroke="#ff8ab4" stroke-width="3" opacity=".5">
+    <line x1="960" y1="600" x2="1200" y2="600"/><line x1="990" y1="625" x2="1170" y2="625"/>
+    <line x1="1020" y1="650" x2="1140" y2="650"/>
+  </g>
+  <!-- palms -->
+  <g fill="#0f0718">
+    <path d="M150 700 C160 560 175 470 205 380 L215 383 C190 470 178 560 172 700Z"/>
+    <path d="M208 380 C150 340 90 350 40 395 C100 370 150 372 205 392Z"/>
+    <path d="M208 380 C250 320 320 310 380 340 C320 335 260 350 212 392Z"/>
+    <path d="M208 380 C190 310 140 270 80 265 C140 290 175 330 200 390Z"/>
+    <path d="M208 380 C240 330 300 300 350 290 C300 320 255 350 214 392Z"/>
+    <path d="M208 380 C230 420 260 470 270 520 C245 470 220 430 202 392Z"/>
+    <path d="M1490 700 C1480 590 1470 520 1440 450 L1450 446 C1478 520 1494 590 1510 700Z"/>
+    <path d="M1444 448 C1400 410 1340 410 1300 440 C1350 425 1395 430 1442 460Z"/>
+    <path d="M1444 448 C1480 400 1540 395 1590 420 C1540 420 1490 430 1450 460Z"/>
+    <path d="M1444 448 C1430 400 1400 370 1360 360 C1400 385 1425 415 1440 458Z"/>
+    <path d="M1444 448 C1470 410 1510 390 1550 380 C1510 405 1480 430 1452 460Z"/>
+  </g>
+</svg>

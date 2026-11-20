@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1b1230"/><stop offset="1" stop-color="#2a1236"/></linearGradient></defs>
+  <rect width="640" height="360" fill="url(#g)"/>
+  <circle cx="470" cy="210" r="70" fill="#ff3d8b" opacity=".25"/>
+  <g fill="#0f0718" opacity=".8"><rect x="120" y="190" width="40" height="110"/><rect x="165" y="160" width="34" height="140"/><rect x="205" y="210" width="50" height="90"/></g>
+  <rect y="300" width="640" height="60" fill="#120a1d"/>
+  <text x="320" y="170" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="22" font-weight="700" fill="#eee8f6">Screenshot coming soon</text>
+  <text x="320" y="200" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="14" fill="#a59cb8">GTA6Help.in</text>
+</svg>
