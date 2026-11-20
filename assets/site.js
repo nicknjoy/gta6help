@@ -8,7 +8,7 @@
    ============================================ */
 window.SITE = {
   email: "gta6.h3lp@gmail.com",
-  adsenseClient: "",
+  adsenseClient: "ca-pub-6000336420372903",
   adSlots: { top: "", bottom: "" }
 };
 
@@ -54,12 +54,14 @@ window.SITE = {
   });
 
   // ---------------- Ads: max 2 banners per page (top + bottom), no pop-ups ----------------
-  if (SITE.adsenseClient) {
-    var s = document.createElement("script");
+  if (SITE.adsenseClient && (SITE.adSlots.top || SITE.adSlots.bottom)) {
+    var s = document.querySelector('script[src*="adsbygoogle.js"]') ? null : document.createElement("script");
+    if (s) {
     s.async = true;
     s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + SITE.adsenseClient;
     s.crossOrigin = "anonymous";
     document.head.appendChild(s);
+    }
     var makeAd = function (slot) {
       var box = document.createElement("div");
       box.className = "ad-box wrap";
