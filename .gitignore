@@ -1,12 +1,4 @@
-/.mcp.json
-/.vsconfig
-/Automation_EventCrowd.sln
-/Automation_EventCrowd.slnx
-/EventCrowd.sln
-/EventCrowd.slnx
-/Binaries
-/Intermediate
-/Saved
-/.vs
-/.claude
-/DerivedDataCache
+node_modules/
+.vercel/
+.DS_Store
+Thumbs.db
