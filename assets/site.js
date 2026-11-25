@@ -45,7 +45,7 @@ window.SITE = {
     "Grand Theft Auto, GTA and related marks belong to Take-Two Interactive. Screenshots, where shown, are captured by our own players.</p></div>" +
     "<div>" + links.map(function (l) { return '<a href="' + l[0] + '">' + l[1] + "</a>"; }).join("<br>") + "</div>" +
     '<div><a href="about.html">About us</a><br><a href="contact.html">Contact</a><br><a href="privacy.html">Privacy Policy</a></div></div>' +
-    '<div class="wrap" style="margin-top:18px">Info last checked: 24 Nov 2026. Details may change with game updates.</div>';
+    '<div class="wrap" style="margin-top:18px">Info last checked: 25 Nov 2026. Details may change with game updates.</div>';
   document.body.appendChild(f);
 
   // Fill in the contact email wherever the page asks for it
