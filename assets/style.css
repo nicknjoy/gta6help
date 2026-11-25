@@ -123,3 +123,16 @@ ul.list li,ol.steps li{margin-bottom:8px}
 footer.site{border-top:1px solid var(--line);padding:36px 0 50px;margin-top:40px;color:var(--muted);font-size:.85rem}
 footer.site .cols{display:flex;gap:30px;flex-wrap:wrap;justify-content:space-between}
 footer.site a{color:var(--muted)}
+
+/* mission thumbnails + video previews */
+.mission .thumb{width:112px;aspect-ratio:16/9;border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+.thumb-art{display:block;width:100%;height:auto}
+.mission-detail .media{border-radius:10px;overflow:hidden;border:1px solid var(--line);align-self:start}
+.yt-facade{position:relative;cursor:pointer;aspect-ratio:16/9;background:#000}
+.yt-facade img{width:100%;height:100%;object-fit:cover;opacity:.9}
+.yt-facade:hover img{opacity:1}
+.yt-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:44px;border-radius:12px;background:#ff0033;color:#fff;display:grid;place-items:center;font-size:1.3rem}
+.yt-cap{position:absolute;left:8px;bottom:6px;font-size:.75rem;background:rgba(0,0,0,.7);padding:2px 8px;border-radius:6px}
+.yt-frame{aspect-ratio:16/9}.yt-frame iframe{width:100%;height:100%;border:0;display:block}
+@media(max-width:640px){.mission .thumb{width:80px}}
+.mission > .no{display:none}

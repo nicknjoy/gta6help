@@ -92,6 +92,66 @@ window.SITE = {
 
   function pad(n) { return n < 10 ? "0" + n : "" + n; }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  /* ---------- original mission thumbnails (inline SVG, no image files) ---------- */
+  var CH_COL = { 1: ["#ff3d8b", "#ff8a3d"], 2: ["#7b5cff", "#ff3d8b"], 3: ["#ff8a3d", "#ffd23d"], 4: ["#2de0c8", "#3d8bff"], 5: ["#ffd23d", "#ff3d8b"] };
+  var ICONS = {
+    car: '<path d="M10 34l6-14c1-3 3-4 6-4h20c3 0 5 1 6 4l6 14v12h-6v-4H16v4h-6z" /><circle cx="20" cy="38" r="4" fill="#0d0a14"/><circle cx="44" cy="38" r="4" fill="#0d0a14"/>',
+    boat: '<path d="M8 38h48l-8 10H16z"/><path d="M30 10v26h-14z"/><path d="M33 14v22h14z"/>',
+    plane: '<path d="M30 6c2 0 3 2 3 5v13l20 11v5l-20-6v10l6 5v4l-9-3-9 3v-4l6-5V34l-20 6v-5l20-11V11c0-3 1-5 3-5z"/>',
+    bank: '<path d="M32 6l26 12v4H6v-4z"/><path d="M10 26h6v18h-6zM22 26h6v18h-6zM36 26h6v18h-6zM48 26h6v18h-6z"/><path d="M6 48h52v6H6z"/>',
+    bag: '<path d="M14 22h36l-4 30H18z"/><path d="M24 22v-6a8 8 0 0116 0v6" fill="none" stroke="#fff" stroke-width="4"/><text x="32" y="44" text-anchor="middle" font-size="16" font-weight="700" fill="#0d0a14" font-family="Arial">$</text>',
+    house: '<path d="M32 8l26 22h-7v24H13V30H6z"/><path d="M27 40h10v14H27z" fill="#0d0a14"/>',
+    target: '<circle cx="32" cy="32" r="22" fill="none" stroke="#fff" stroke-width="5"/><circle cx="32" cy="32" r="11" fill="none" stroke="#fff" stroke-width="5"/><path d="M30 4h4v56h-4zM4 30h56v4H4z"/>',
+    star: '<path d="M32 6l7 17 18 1-14 12 5 18-16-10-16 10 5-18L7 24l18-1z"/>',
+    music: '<path d="M24 12l28-6v34a8 8 0 11-5-7V16l-18 4v26a8 8 0 11-5-7z"/>',
+    swamp: '<path d="M6 44c6-4 10-4 16 0s10 4 16 0 10-4 20 0v10H6z"/><path d="M20 40c2-10 8-18 20-20-4 6-6 12-6 20z"/>'
+  };
+  function iconFor(m) {
+    var t = (m.name + " " + (m.tips || "")).toLowerCase();
+    if (m.heist || /\bbank|fleeca|vault|safecrack/.test(t)) return "bank";
+    if (/plane|airfield|fly |helicopter|skies|down to earth/.test(t)) return "plane";
+    if (/boat|jet ski|seashark|fishing|marina|island/.test(t)) return "boat";
+    if (/swamp|gator|alligator|everglade/.test(t)) return "swamp";
+    if (/music|concert|dimez|dwnply|video|club/.test(t)) return "music";
+    if (/house|home|apartment|moved in|real estate|mia/.test(t)) return "house";
+    if (/\bcar\b|drive|race|zorr|schafter|impound|tow|garage|traffic/.test(t)) return "car";
+    if (/cash|money|drug|deal|rent|stash|bag/.test(t)) return "bag";
+    if (/shoot|gun|kill|fight|cops|police|escape/.test(t)) return "target";
+    return "star";
+  }
+  function wrap(t, max) {
+    var words = t.split(" "), lines = [""];
+    words.forEach(function (w) {
+      var cur = lines[lines.length - 1];
+      if ((cur + " " + w).trim().length > max && cur) lines.push(w); else lines[lines.length - 1] = (cur + " " + w).trim();
+    });
+    return lines.slice(0, 3);
+  }
+  function thumbSVG(m, ch, big) {
+    var col = CH_COL[ch] || CH_COL[1], id = "g" + m.n + (big ? "b" : "s");
+    var bg = '<defs><linearGradient id="' + id + '" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="' + col[0] + '"/><stop offset="1" stop-color="' + col[1] + '"/></linearGradient></defs>' +
+      '<rect width="320" height="180" fill="url(#' + id + ')"/>' +
+      '<path d="M0 0H210L120 180H0z" fill="#0d0a14" opacity=".82"/>' +
+      '<circle cx="250" cy="90" r="52" fill="#0d0a14" opacity=".35"/>' +
+      '<g transform="translate(218 58)" fill="#fff">' + ICONS[iconFor(m)] + "</g>";
+    var font = 'font-family="Bebas Neue,Impact,Arial Narrow,sans-serif"';
+    var body;
+    if (!big) {
+      body = '<text x="22" y="128" ' + font + ' font-size="108" fill="#fff">' + pad(m.n) + "</text>";
+    } else {
+      var who = m.who === "J" ? "JASON" : m.who === "L" ? "LUCIA" : m.who === "JL" ? "JASON + LUCIA" : "TBC";
+      var lines = wrap(m.spoiler ? "SPOILER" : m.name.toUpperCase(), 11), fs = lines.length > 2 ? 24 : 30;
+      body = '<text x="18" y="52" ' + font + ' font-size="48" fill="url(#' + id + ')">' + pad(m.n) + "</text>" +
+        lines.map(function (l, i) { return '<text x="18" y="' + (98 + i * (fs + 2)) + '" ' + font + ' font-size="' + fs + '" fill="#fff">' + esc(l) + "</text>"; }).join("") +
+        '<text x="18" y="166" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" fill="#ffd23d" letter-spacing="1.5">' + who + " · CH " + ch + "</text>";
+    }
+    return '<svg class="thumb-art" viewBox="0 0 320 180" role="img" aria-label="Mission ' + m.n + ' thumbnail" xmlns="http://www.w3.org/2000/svg">' + bg + body + "</svg>";
+  }
+  function videoFacade(m) {
+    return '<div class="yt-facade" data-yt="' + esc(m.yt) + '" role="button" tabindex="0" aria-label="Play walkthrough video">' +
+      '<img loading="lazy" src="https://i.ytimg.com/vi/' + esc(m.yt) + '/hqdefault.jpg" alt="Walkthrough video for mission ' + m.n + '">' +
+      '<span class="yt-play">▶</span><span class="yt-cap">Walkthrough video · YouTube</span></div>';
+  }
 
   function render() {
     var html = "";
@@ -115,11 +175,11 @@ window.SITE = {
           : esc(m.name);
         html += '<div class="mission' + (done[m.n] ? " done" : "") + '" data-n="' + m.n + '">' +
           '<div class="no">' + pad(m.n) + "</div>" +
+          '<div class="thumb">' + thumbSVG(m, c.id) + '</div>' +
           '<div><div class="nm">' + name + "</div><div>" + tag + "</div></div>" +
           '<input type="checkbox" class="chk" aria-label="Mark complete"' + (done[m.n] ? " checked" : "") + ">" +
           '<div class="mission-detail">' +
-          '<figure class="shot" style="margin:0"><img src="images/missions/' + pad(m.n) + '.jpg" alt="Mission ' + m.n + ' screenshot" ' +
-          "onerror=\"this.onerror=null;this.src='images/screenshot-placeholder.svg'\"><figcaption>Mission " + m.n + " · reference image</figcaption></figure>" +
+          '<div class="media">' + (m.yt ? videoFacade(m) : thumbSVG(m, c.id, true)) + '</div>' +
           "<div><h3>Mission " + m.n + (m.spoiler ? "" : " — " + esc(m.name)) + "</h3>" +
           '<p class="muted">Chapter ' + c.id + ": " + esc(c.name) + " · Play as: " + (WHO[m.who] || "to be confirmed") + "</p>" +
           (m.steps ? '<ol class="steps">' + m.steps.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ol>" : "") +
@@ -144,6 +204,8 @@ window.SITE = {
       done[n] = e.target.checked; save(); render(); return;
     }
     if (e.target.classList.contains("spoil")) { e.target.classList.remove("spoil"); var hint = e.target.nextSibling; if (hint) hint.remove(); return; }
+    var fac = e.target.closest(".yt-facade");
+    if (fac) { fac.outerHTML = '<div class="yt-frame"><iframe src="https://www.youtube-nocookie.com/embed/' + fac.getAttribute("data-yt") + '?autoplay=1&rel=0" title="Walkthrough video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>'; return; }
     if (e.target.closest(".mission-detail")) return;
     row.classList.toggle("open");
   });
